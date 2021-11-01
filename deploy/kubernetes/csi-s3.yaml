@@ -65,7 +65,7 @@ spec:
             - name: ADDRESS
               value: /csi/csi.sock
             - name: DRIVER_REG_SOCK_PATH
-              value: /var/lib/kubelet/plugins/ch.ctrox.csi.s3-driver/csi.sock
+              value: /var/data/kubelet/csi-plugins/ch.ctrox.csi.s3-driver/csi.sock
             - name: KUBE_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -98,22 +98,22 @@ spec:
             - name: plugin-dir
               mountPath: /csi
             - name: pods-mount-dir
-              mountPath: /var/lib/kubelet/pods
+              mountPath: /var/data/kubelet/pods
               mountPropagation: "Bidirectional"
             - name: fuse-device
               mountPath: /dev/fuse
       volumes:
         - name: registration-dir
           hostPath:
-            path: /var/lib/kubelet/plugins_registry/
+            path: /var/data/kubelet/plugins_registry/
             type: DirectoryOrCreate
         - name: plugin-dir
           hostPath:
-            path: /var/lib/kubelet/plugins/ch.ctrox.csi.s3-driver
+            path: /var/data/kubelet/csi-plugins/ch.ctrox.csi.s3-driver
             type: DirectoryOrCreate
         - name: pods-mount-dir
           hostPath:
-            path: /var/lib/kubelet/pods
+            path: /var/data/kubelet/pods
             type: Directory
         - name: fuse-device
           hostPath:
